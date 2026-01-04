@@ -1,0 +1,45 @@
+# Loads default set of integrations. Do not remove.
+default_config:
+
+frontend:
+  themes: !include_dir_merge_named themes
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+template: !include templates.yaml
+
+# Inputs
+input_number: !include inputs/number.yaml
+input_datetime: !include inputs/datetime.yaml
+
+http:
+  ip_ban_enabled: true
+  login_attempts_threshold: 5
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 127.0.0.1
+
+notify:
+  - name: signal
+    platform: signal_messenger
+    url: "http://127.0.0.1:8080"
+    number: !secret person1_phone1_number
+    recipients:
+      - !secret person1_phone2_number
+
+google_assistant:
+  project_id: !secret google_assistant__service_account__project_id
+  service_account:
+    type: "service_account"
+    auth_uri: "https://accounts.google.com/o/oauth2/auth"
+    token_uri: "https://oauth2.googleapis.com/token"
+    auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs"
+    universe_domain: "googleapis.com"
+    project_id: !secret google_assistant__service_account__project_id
+    private_key_id: !secret google_assistant__service_account__private_key_id
+    private_key: !secret google_assistant__service_account__private_key
+    client_email: !secret google_assistant__service_account__client_email
+    client_id: !secret google_assistant__service_account__client_id
+    client_x509_cert_url: !secret google_assistant__service_account__client_x509_cert_url
+  report_state: true

@@ -1,0 +1,443 @@
+blueprint:
+  name: Creation and Management of User Sensors for BodyMiScale
+  description:
+    Updates user entities based on weight measurements from the scale,
+    filtering by user-defined weight ranges.
+  domain: automation
+  input:
+    weight_sensor:
+      name: Weight Sensor
+      description: Select the weight sensor (ESPHome or BLE Monitor)
+      selector:
+        entity:
+          filter:
+            - domain:
+                - sensor
+          reorder: false
+          multiple: false
+    impedance_sensor:
+      name: Impedance Sensor
+      description: Select the impedance sensor (ESPHome or BLE Monitor)
+      selector:
+        entity:
+          filter:
+            - domain:
+                - sensor
+          reorder: false
+          multiple: false
+      default: ""
+    heart_rate_sensor:
+      name: Heart Rate Sensor
+      description: Select the Heart Rate sensor (ESPHome or BLE Monitor)
+      selector:
+        entity:
+          filter:
+            - domain:
+                - sensor
+          reorder: false
+          multiple: false
+      default: ""
+    profile_id_sensor:
+      name: Profile ID Sensor
+      description: Select the Profile ID sensor (ESPHome or BLE Monitor)
+      selector:
+        entity:
+          filter:
+            - domain:
+                - sensor
+          reorder: false
+          multiple: false
+      default: ""
+    num_users:
+      name: Number of Users
+      description: Select the number of users to track
+      selector:
+        select:
+          options:
+            - "1"
+            - "2"
+            - "3"
+            - "4"
+            - "5"
+          sort: false
+          multiple: false
+          custom_value: false
+    user1_name:
+      name: User 1 Name
+      selector:
+        text:
+          multiline: false
+          multiple: false
+    user1_id:
+      name: User 1 Device ID
+      selector:
+        number:
+          unit_of_measurement: ID
+      default: 99
+    user1_weight:
+      name: User 1 Weight Entity
+      selector:
+        entity:
+          filter:
+            - domain:
+                - input_number
+          reorder: false
+          multiple: false
+    user1_impedance:
+      name: User 1 Impedance Entity
+      selector:
+        entity:
+          filter:
+            - domain:
+                - input_number
+          reorder: false
+          multiple: false
+      default: ""
+    user1_heart_rate:
+      name: user 1 Heart Rate Entity
+      selector:
+        entity:
+          filter:
+            - domain:
+                - input_number
+          reorder: false
+          multiple: false
+      default: ""
+    user1_last_time:
+      name: User 1 Last Measurement Time
+      selector:
+        entity:
+          filter:
+            - domain:
+                - input_datetime
+          reorder: false
+          multiple: false
+      default: ""
+    user2_name:
+      name: User 2 Name
+      selector:
+        text:
+          multiline: false
+          multiple: false
+      default: ""
+    user2_id:
+      name: User 2 Device ID
+      selector:
+        number:
+          min: 1
+          max: 99
+          mode: box
+          unit_of_measurement: ID
+      default: 99
+    user2_weight:
+      name: User 2 Weight Entity
+      selector:
+        entity:
+          filter:
+            - domain:
+                - input_number
+          reorder: false
+          multiple: false
+      default: ""
+    user2_impedance:
+      name: User 2 Impedance Entity
+      selector:
+        entity:
+          filter:
+            - domain:
+                - input_number
+          reorder: false
+          multiple: false
+      default: ""
+    user2_heart_rate:
+      name: user 2 Heart Rate Entity
+      selector:
+        entity:
+          filter:
+            - domain:
+                - input_number
+          reorder: false
+          multiple: false
+      default: ""
+    user2_last_time:
+      name: User 2 Last Measurement Time
+      selector:
+        entity:
+          filter:
+            - domain:
+                - input_datetime
+          reorder: false
+          multiple: false
+      default: ""
+    user3_name:
+      name: user 3 Name
+      selector:
+        text:
+          multiline: false
+          multiple: false
+      default: ""
+    user3_id:
+      name: User 3 Device ID
+      selector:
+        number:
+          min: 1
+          max: 99
+          mode: box
+          unit_of_measurement: ID
+      default: 99
+    user3_weight:
+      name: user 3 Weight Entity
+      selector:
+        entity:
+          filter:
+            - domain:
+                - input_number
+          reorder: false
+          multiple: false
+      default: ""
+    user3_impedance:
+      name: user 3 Impedance Entity
+      selector:
+        entity:
+          filter:
+            - domain:
+                - input_number
+          reorder: false
+          multiple: false
+      default: ""
+    user3_heart_rate:
+      name: user 3 Heart Rate Entity
+      selector:
+        entity:
+          filter:
+            - domain:
+                - input_number
+          reorder: false
+          multiple: false
+      default: ""
+    user3_last_time:
+      name: user 3 Last Measurement Time
+      selector:
+        entity:
+          filter:
+            - domain:
+                - input_datetime
+          reorder: false
+          multiple: false
+      default: ""
+    user4_name:
+      name: user 4 Name
+      selector:
+        text:
+          multiline: false
+          multiple: false
+      default: ""
+    user4_id:
+      name: User 4 Device ID
+      selector:
+        number:
+          min: 1
+          max: 99
+          mode: box
+          unit_of_measurement: ID
+      default: 99
+    user4_weight:
+      name: user 4 Weight Entity
+      selector:
+        entity:
+          filter:
+            - domain:
+                - input_number
+          reorder: false
+          multiple: false
+      default: ""
+    user4_impedance:
+      name: user 4 Impedance Entity
+      selector:
+        entity:
+          filter:
+            - domain:
+                - input_number
+          reorder: false
+          multiple: false
+      default: ""
+    user4_heart_rate:
+      name: user 4 Heart Rate Entity
+      selector:
+        entity:
+          filter:
+            - domain:
+                - input_number
+          reorder: false
+          multiple: false
+      default: ""
+    user4_last_time:
+      name: user 4 Last Measurement Time
+      selector:
+        entity:
+          filter:
+            - domain:
+                - input_datetime
+          reorder: false
+          multiple: false
+      default: ""
+    user5_name:
+      name: user 5 Name
+      selector:
+        text:
+          multiline: false
+          multiple: false
+      default: ""
+    user5_id:
+      name: User 5 Device ID
+      selector:
+        number:
+          min: 1
+          max: 99
+          mode: box
+          unit_of_measurement: ID
+      default: 99
+    user5_weight:
+      name: user 5 Weight Entity
+      selector:
+        entity:
+          filter:
+            - domain:
+                - input_number
+          reorder: false
+          multiple: false
+      default: ""
+    user5_impedance:
+      name: user 5 Impedance Entity
+      selector:
+        entity:
+          filter:
+            - domain:
+                - input_number
+          reorder: false
+          multiple: false
+      default: ""
+    user5_heart_rate:
+      name: user 5 Heart Rate Entity
+      selector:
+        entity:
+          filter:
+            - domain:
+                - input_number
+          reorder: false
+          multiple: false
+      default: ""
+    user5_last_time:
+      name: user 5 Last Measurement Time
+      selector:
+        entity:
+          filter:
+            - domain:
+                - input_datetime
+          reorder: false
+          multiple: false
+      default: ""
+  source_url: https://github.com/jaimediniz/homeassistant/blueprints/automation/body_mi_scale/weight_impedance_update.yaml
+variables:
+  weight_sensor: !input weight_sensor
+  impedance_sensor: !input impedance_sensor
+  heart_rate_sensor: !input heart_rate_sensor
+  profile_id_sensor: !input profile_id_sensor
+  num_users: !input num_users
+  users:
+    - enabled: true
+      name: !input user1_name
+      id: !input user1_id
+      weight: !input user1_weight
+      impedance: !input user1_impedance
+      heart_rate: !input user1_heart_rate
+      last_time: !input user1_last_time
+    - enabled: "{{ num_users | int >= 2 }}"
+      name: !input user2_name
+      id: !input user2_id
+      weight: !input user2_weight
+      impedance: !input user2_impedance
+      heart_rate: !input user2_heart_rate
+      last_time: !input user2_last_time
+    - enabled: "{{ num_users | int >= 3 }}"
+      name: !input user3_name
+      id: !input user3_id
+      weight: !input user3_weight
+      impedance: !input user3_impedance
+      heart_rate: !input user3_heart_rate
+      last_time: !input user3_last_time
+    - enabled: "{{ num_users | int >= 4 }}"
+      name: !input user4_name
+      id: !input user4_id
+      weight: !input user4_weight
+      impedance: !input user4_impedance
+      heart_rate: !input user4_heart_rate
+      last_time: !input user4_last_time
+    - enabled: "{{ num_users | int >= 5 }}"
+      name: !input user5_name
+      id: !input user5_id
+      weight: !input user5_weight
+      impedance: !input user5_impedance
+      heart_rate: !input user5_heart_rate
+      last_time: !input user5_last_time
+trigger:
+  - trigger: state
+    entity_id: !input weight_sensor
+action:
+  - delay: 00:00:15
+  - variables:
+      weight: "{{ states(weight_sensor) | float(0) }}"
+      impedance: "{{ states(impedance_sensor) | float(0) }}"
+      heart_rate: "{{ states(heart_rate_sensor) | int(0) }}"
+      profile_id: "{{ states(profile_id_sensor) | int(0) }}"
+      last_time: "{{ as_local(now()).strftime('%Y-%m-%d %H:%M:%S') }}"
+  - condition: template
+    value_template: "{{ profile_id != 0 and weight != 0 }}"
+  - repeat:
+      count: "{{ num_users | int }}"
+      sequence:
+        - variables:
+            user: "{{ users[repeat.index - 1] }}"
+            user_name: "{{ user.name }}"
+            user_weight: "{{ user.weight }}"
+            user_impedance: "{{ user.impedance }}"
+            user_heart_rate: "{{ user.heart_rate }}"
+            user_last_time: "{{ user.last_time }}"
+        - condition: template
+          value_template: "{{ user.enabled and profile_id == user.id }}"
+        - choose:
+            - conditions:
+                - "{{ user_weight != '' }}"
+              sequence:
+                - action: input_number.set_value
+                  target:
+                    entity_id: "{{ user_weight }}"
+                  data:
+                    value: "{{ weight }}"
+        - choose:
+            - conditions:
+                - "{{ user_impedance != '' and impedance != 0 }}"
+              sequence:
+                - action: input_number.set_value
+                  target:
+                    entity_id: "{{ user_impedance }}"
+                  data:
+                    value: "{{ impedance }}"
+        - choose:
+            - conditions:
+                - "{{ user_heart_rate != '' and heart_rate != 0 }}"
+              sequence:
+                - action: input_number.set_value
+                  target:
+                    entity_id: "{{ user_heart_rate }}"
+                  data:
+                    value: "{{ heart_rate }}"
+        - choose:
+            - conditions:
+                - "{{ user_last_time != '' and last_time != none and last_time is defined}}"
+              sequence:
+                - action: input_datetime.set_datetime
+                  target:
+                    entity_id: "{{ user_last_time }}"
+                  data:
+                    datetime: "{{ last_time }}"

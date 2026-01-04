@@ -1,0 +1,10 @@
+person1_scale_last_updated:
+  name: Person 1 Scale Last Updated
+  has_date: true
+  has_time: true
+  icon: mdi:clock-time-five
+person2_scale_last_updated:
+  name: Person 2 Scale Last Updated
+  has_date: true
+  has_time: true
+  icon: mdi:clock-time-five

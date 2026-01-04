@@ -1,0 +1,104 @@
+- id: "1765741427670"
+  alias: Disable vacuum camera update when docked
+  description: ""
+  use_blueprint:
+    path: PiotrMachowski/disable_vacuum_camera_update_when_docked.yaml
+    input:
+      vacuum: vacuum.xiaomi_de_1057862412_b106eu
+      camera: camera.xiaomi_cloud_map_extractor
+- id: "1766068327417"
+  alias: Creation and Management of User Sensors for BodyMiScale
+  description: ""
+  use_blueprint:
+    path: body_mi_scale/weight_impedance_update.yaml
+    input:
+      weight_sensor: sensor.body_composition_scale_ee1c_weight
+      impedance_sensor: sensor.body_composition_scale_ee1c_impedance
+      heart_rate_sensor: sensor.body_composition_scale_ee1c_heart_rate
+      profile_id_sensor: sensor.body_composition_scale_ee1c_profile_id
+      num_users: "2"
+      user1_name: !secret person1_name
+      user1_id: !secret person1_bodymiscale_id
+      user1_weight: input_number.person1_weight
+      user1_impedance: input_number.person1_impedance
+      user1_heart_rate: input_number.person1_heart_rate
+      user1_last_time: input_datetime.person1_scale_last_updated
+      user2_name: !secret person2_name
+      user2_id: !secret person2_bodymiscale_id
+      user2_weight: input_number.person2_weight
+      user2_impedance: input_number.person2_impedance
+      user2_heart_rate: input_number.person2_heart_rate
+      user2_last_time: input_datetime.person2_scale_last_updated
+- id: "1767006487685"
+  alias: Night Light
+  description: ""
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.motion_sensor_motion
+      from:
+      to:
+        - "on"
+  conditions:
+    - condition: time
+      after: "22:00:00"
+      before: 09:00:00
+    - condition: state
+      state:
+        - "off"
+      entity_id: light.cuco_de_944214802_v2eur_s_13_indicator_light
+    - condition: state
+      entity_id: light.kitchen_lamp
+      state:
+        - "off"
+  actions:
+    - action: light.turn_on
+      metadata: {}
+      target:
+        device_id: 17758afa5364a2e65315c8d076912c23
+      data:
+        brightness_pct: 1
+    - wait_for_trigger:
+        - trigger: state
+          entity_id:
+            - binary_sensor.motion_sensor_motion
+          from:
+          to:
+            - "on"
+      timeout:
+        hours: 0
+        minutes: 3
+        seconds: 0
+        milliseconds: 0
+      continue_on_timeout: true
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 10
+        milliseconds: 0
+    - action: light.turn_off
+      metadata: {}
+      target:
+        device_id: 17758afa5364a2e65315c8d076912c23
+      data: {}
+  mode: single
+- id: "1767007854101"
+  alias: Detect Intruder
+  description: ""
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.motion_sensor_motion
+      from:
+      to:
+        - "on"
+  conditions: []
+  actions:
+    - action: siren.turn_on
+      metadata: {}
+      target:
+        device_id: 083b117c788fbf9ab071a57f82a57e89
+      data:
+        volume_level: 1
+        tone: Alarm 5
+  mode: single

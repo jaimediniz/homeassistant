@@ -1,0 +1,18 @@
+- trigger:
+    - platform: homeassistant
+      event: start
+      id: "HA_START"
+    - platform: homeassistant
+      event: shutdown
+      id: "HA_SHUTDOWN"
+  binary_sensor:
+    - name: "HomeAssistant up and running"
+      unique_id: "ha_up_and_running"
+      delay_on: "00:00:30"
+      state: >-
+        {%- if (trigger.id == "HA_START") -%}
+          true
+        {%- elif (trigger.id == "HA_SHUTDOWN") -%}
+          false
+        {%- endif %}
+      icon: mdi:home-assistant

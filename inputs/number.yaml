@@ -1,0 +1,54 @@
+person1_weight:
+  name: Person 1 Weight
+  initial: 0
+  min: 0
+  max: 200
+  step: 1
+  mode: box
+  unit_of_measurement: kg
+  icon: mdi:weight-kilogram
+person1_impedance:
+  name: Person 1 Impedance
+  initial: 0
+  min: 0
+  max: 2000
+  step: 1
+  mode: box
+  unit_of_measurement: ohm
+  icon: mdi:omega
+person1_heart_rate:
+  name: Person 1 Heart Rate
+  initial: 0
+  min: 0
+  max: 400
+  step: 1
+  mode: box
+  unit_of_measurement: bpm
+  icon: mdi:heart-pulse
+person2_weight:
+  name: Person 2 Weight
+  initial: 0
+  min: 0
+  max: 200
+  step: 1
+  mode: box
+  unit_of_measurement: kg
+  icon: mdi:weight-kilogram
+person2_impedance:
+  name: Person 2 Impedance
+  initial: 0
+  min: 0
+  max: 2000
+  step: 1
+  mode: box
+  unit_of_measurement: ohm
+  icon: mdi:omega
+person2_heart_rate:
+  name: Person 2 Heart Rate
+  initial: 0
+  min: 0
+  max: 400
+  step: 1
+  mode: box
+  unit_of_measurement: bpm
+  icon: mdi:heart-pulse
