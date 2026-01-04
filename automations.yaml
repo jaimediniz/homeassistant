@@ -12,19 +12,26 @@
   use_blueprint:
     path: body_mi_scale/weight_impedance_update.yaml
     input:
+      ###
+      # Works with secret, but it must be manually set, otherwise it will break the UI view
+      # user1_name: !secret person1_name
+      # user1_id: !secret person1_bodymiscale_id
+      # user2_name: !secret person2_name
+      # user2_id: !secret person2_bodymiscale_id
+      user1_name: ""
+      user1_id: 0
+      user2_name: ""
+      user2_id: 0
+      ###
       weight_sensor: sensor.body_composition_scale_ee1c_weight
       impedance_sensor: sensor.body_composition_scale_ee1c_impedance
       heart_rate_sensor: sensor.body_composition_scale_ee1c_heart_rate
       profile_id_sensor: sensor.body_composition_scale_ee1c_profile_id
       num_users: "2"
-      user1_name: !secret person1_name
-      user1_id: !secret person1_bodymiscale_id
       user1_weight: input_number.person1_weight
       user1_impedance: input_number.person1_impedance
       user1_heart_rate: input_number.person1_heart_rate
       user1_last_time: input_datetime.person1_scale_last_updated
-      user2_name: !secret person2_name
-      user2_id: !secret person2_bodymiscale_id
       user2_weight: input_number.person2_weight
       user2_impedance: input_number.person2_impedance
       user2_heart_rate: input_number.person2_heart_rate
