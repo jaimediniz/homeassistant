@@ -386,13 +386,13 @@ trigger:
 action:
   - delay: 00:00:15
   - variables:
-      weight: "{{ states(weight_sensor) | float(0) }}"
-      impedance: "{{ states(impedance_sensor) | float(0) }}"
-      heart_rate: "{{ states(heart_rate_sensor) | int(0) }}"
-      profile_id: "{{ states(profile_id_sensor) | int(0) }}"
+      weight: "{{ float(states(weight_sensor)) }}"
+      impedance: "{{ float(states(impedance_sensor)) }}"
+      heart_rate: "{{ float(states(heart_rate_sensor)) }}"
+      profile_id: "{{ float(states(profile_id_sensor)) }}"
       last_time: "{{ as_local(now()).strftime('%Y-%m-%d %H:%M:%S') }}"
   - condition: template
-    value_template: "{{ profile_id != 0 and weight != 0 }}"
+    value_template: "{{ profile_id != 0 and weight != 0 and weight != 'unknown' and weight != 'unavailable' }}"
   - repeat:
       count: "{{ num_users | int }}"
       sequence:
